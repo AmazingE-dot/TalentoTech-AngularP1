@@ -1,0 +1,10 @@
+
+<div class="contenedor">
+  <p>Nombres</p>
+  @for (nombre of listaNombres; track $index) {
+  <div class="card">
+      <span>{{nombre}}</span>
+  </div>
+  }
+  <button routerLink="/">Regresar</button>
+</div>

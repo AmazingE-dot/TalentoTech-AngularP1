@@ -1,22 +1,2 @@
-<p>inicio works!</p>
-
-@if (mostrarTitulo) {<h1>Mi titulo</h1>}
-
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Edad</th>
-            <th>Ciudad</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (persona of personas; track $index) {
-            <tr>
-                <td>{{persona.nombre}}</td>
-                <td>{{persona.edad}}</td>
-                <td>{{persona.ciudad}}</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<button routerLink="/ListaNombres">Ir a página</button>
+<button routerLink="/Imagenes">Ir a imágenes</button>
