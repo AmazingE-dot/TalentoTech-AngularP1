@@ -1,0 +1,23 @@
+header {
+  margin: 25px 50px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+ul {
+  display: flex;
+  gap: 2.5rem;
+  text-decoration: none;
+  list-style: none;
+}
+
+li{
+  cursor: pointer;
+}
+
+li:hover {
+  color: blue;
+}

@@ -1,0 +1,12 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  max-width: 500px;
+  text-wrap: pretty;
+  text-align: center;
+}

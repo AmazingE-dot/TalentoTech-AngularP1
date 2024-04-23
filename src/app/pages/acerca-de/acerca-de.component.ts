@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-inicio',
+  selector: 'app-acerca-de',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './inicio.component.html',
-  styleUrl: './inicio.component.css'
+  templateUrl: './acerca-de.component.html',
+  styleUrl: './acerca-de.component.css'
 })
-export class InicioComponent {
+export class AcercaDeComponent {
 
 }
