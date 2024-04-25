@@ -5,21 +5,29 @@ export const MenuRoutes: MenuInfoInterface[] = [
   {
     path: PATH.INICIO,
     title: 'Home',
-    icon: '',
+    icon: 'fa-solid fa-house',
     classCss: '',
     subMenu: [],
   },
   {
     path: PATH.IMAGE,
     title: 'Image',
-    icon: '',
+    icon: 'fa-solid fa-image',
     classCss: '',
-    subMenu: [],
+    subMenu: [
+      {
+        path: PATH.IMAGE,
+        title: 'Imagen',
+        icon: 'fa-solid fa-image',
+        classCss: '',
+        subMenu: [],
+      },
+    ],
   },
   {
     path: PATH.NAME,
     title: 'Name',
-    icon: '',
+    icon: 'fa-solid fa-user',
     classCss: '',
     subMenu: [],
   },

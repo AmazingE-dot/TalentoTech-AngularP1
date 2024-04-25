@@ -3,5 +3,5 @@ export interface MenuInfoInterface{
   title:string;
   icon?:string;
   classCss?:string;
-  subMenu?:MenuInfoInterface[];
+  subMenu:MenuInfoInterface[];
 }

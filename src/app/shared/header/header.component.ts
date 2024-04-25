@@ -14,6 +14,6 @@ export class HeaderComponent implements OnInit {
   menuItems:MenuInfoInterface[] = [];
 
   ngOnInit(): void {
-    this.menuItems = MenuRoutes
+    this.menuItems = MenuRoutes;
   }
 }
