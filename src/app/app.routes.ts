@@ -4,34 +4,35 @@ import { ListaNombresComponent } from './pages/lista-nombres/lista-nombres.compo
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ImagenesComponent } from './pages/imagenes/imagenes.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { PATH } from './core/enum/path.enum';
 
 export const routes: Routes = [
   {
-    path: 'Inicio',
+    path: '',
     title: 'Home',
     children: [
       {
-        path: 'Inicio',
+        path: PATH.INICIO,
         title: 'Inicio',
         component: InicioComponent,
       },
       {
-        path: 'Imagenes',
+        path: PATH.IMAGE,
         title: 'Lista de imagenes',
         component: ImagenesComponent,
       },
       {
-        path: 'ListaNombres',
+        path: PATH.NAME,
         title: 'Lista de nombres',
         component: ListaNombresComponent,
       },
       {
-        path: 'Acerca',
+        path: PATH.ABOUT,
         title: 'Acerca de',
         component: AcercaDeComponent,
       },
       {
-        path: 'Contacto',
+        path: PATH.CONTACT,
         title: 'Contacto',
         component: ContactoComponent,
       },

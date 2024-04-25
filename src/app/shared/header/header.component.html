@@ -1,12 +1,15 @@
 <header>
   <nav>
     <span>Mi Aplicación</span>
-    <ul>
-      <li><a routerLink="Inicio/Inicio">Inicio</a></li>
-      <li><a routerLink="Inicio/Imagenes">Imagenes</a></li>
-      <li><a routerLink="Inicio/ListaNombres">Nombres</a></li>
-      <li><a routerLink="Inicio/Acerca">Acerca De</a></li>
-      <li><a routerLink="Inicio/Contacto">Contacto</a></li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul>
+        @for (menu of menuItems; track $index) {
+        <li [class]="menu.classCss">
+          <i [class]="menu.icon"></i>
+          <a [routerLink]="menu.path">{{ menu.title }}</a>
+        </li>
+        }
+      </ul>
+    </div>
   </nav>
 </header>

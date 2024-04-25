@@ -2,9 +2,9 @@
 <div class="contenedor">
   <p>Nombres</p>
   @for (nombre of listaNombres; track $index) {
-  <div class="card">
+  <div class="cards">
       <span>{{nombre}}</span>
   </div>
   }
-  <button routerLink="/">Regresar</button>
+  <button class="mt-4 btn btn-danger " routerLink="/"><i class="fa-solid fa-plus me-1"></i>Regresar</button>
 </div>
