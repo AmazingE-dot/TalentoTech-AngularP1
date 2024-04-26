@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { personaInterface } from '../../core/interface/persona.interface';
 import { TableComponent } from "../../components/table/table.component";
 
 @Component({
-    selector: 'app-lista-nombres',
-    standalone: true,
-    templateUrl: './lista-nombres.component.html',
-    styleUrl: './lista-nombres.component.css',
-    imports: [RouterLink, TableComponent]
+  selector: 'app-usuarios',
+  standalone: true,
+  templateUrl: './usuarios.component.html',
+  styleUrl: './usuarios.component.css',
+  imports: [TableComponent],
 })
-export class ListaNombresComponent implements OnInit{
-  personas: personaInterface[] = [];
-  tituloTabla: string = "Lista de nombres";
+export class UsuariosComponent implements OnInit {
+  usuarios: personaInterface[] = [];
+  tituloTabla: string = 'Lista de usuarios';
 
   ngOnInit(): void {
-    this.personas = [
+    this.usuarios = [
       {
-        nombre: 'Eduardo Leon',
+        nombre: 'Eduardo Leon Usuario',
         fechaNacimiento: new Date('1999-07-19'),
         tipoDocumento: 'Cédula de ciudadanía',
         numeroDocumento: '1234567890',
@@ -26,7 +25,7 @@ export class ListaNombresComponent implements OnInit{
         peso: '60kg',
       },
       {
-        nombre: 'Andrea Alarcon',
+        nombre: 'Andrea Alarcon Usuario',
         fechaNacimiento: new Date('2001-07-19'),
         tipoDocumento: 'Cédula de ciudadanía',
         numeroDocumento: '987654321',
@@ -35,14 +34,14 @@ export class ListaNombresComponent implements OnInit{
         peso: '50kg',
       },
       {
-        nombre: 'Juanito Ortega',
+        nombre: 'Juanito Ortega Usuario',
         fechaNacimiento: new Date('2001-03-02'),
         tipoDocumento: 'Tarjeta Identaidad',
         numeroDocumento: '789456123',
         numeroCelular: 321965874,
         email: 'correo3@gmail.com',
         peso: '54kg',
-      }
+      },
     ];
   }
 }

@@ -45,4 +45,18 @@ export const MenuRoutes: MenuInfoInterface[] = [
     classCss: '',
     subMenu: [],
   },
+  {
+    path: PATH.USUARIOS,
+    title: 'Usuarios',
+    icon: '',
+    classCss: '',
+    subMenu: [],
+  },
+  {
+    path: PATH.PRODUCTS,
+    title: 'Productos',
+    icon: '',
+    classCss: '',
+    subMenu: [],
+  },
 ];
