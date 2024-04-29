@@ -6,5 +6,6 @@ export enum PATH {
   NAME = 'ListaNombres',
   INICIO = '',
   USUARIOS = 'Usuario',
-  PRODUCTS = 'Products'
+  PRODUCTS = 'Products',
+  TASKS = 'Task'
 }

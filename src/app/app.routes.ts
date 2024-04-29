@@ -7,6 +7,7 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
 import { PATH } from './core/enum/path.enum';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ProductosComponent } from './pages/productos/productos.component';
+import { ListaTareasComponent } from './pages/lista-tareas/lista-tareas.component';
 
 export const routes: Routes = [
   {
@@ -47,6 +48,11 @@ export const routes: Routes = [
         path: PATH.PRODUCTS,
         title: 'Productos',
         component: ProductosComponent,
+      },
+      {
+        path: PATH.TASKS,
+        title: 'Tasks',
+        component: ListaTareasComponent,
       },
     ],
   },

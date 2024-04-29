@@ -1,23 +1,53 @@
 <h3>{{ titulo }}</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      @for (columna of columnas; track $index) {
-      <ng-container>
-        <td>{{ columna }}</td>
-      </ng-container>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        @for (columna of columnas; track $index) {
+        <ng-container>
+          <td>{{ formatearNombreDeColumnas(columna) }}</td>
+        </ng-container>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of data; track $index) {
+      <tr>
+        @for (columna of columnas; track $index) { @if (isFecha(item[columna]))
+        {
+        <ng-container>
+          <td>{{ item[columna] | date : "mediumDate" : "UTC" }}</td>
+        </ng-container>
+        } @else {
+        <ng-container>
+          <td>
+            {{ item[columna] }}
+            @if( columna == 'Action' && showAction) {
+            <button (click)="enviarInformacion(item)" class="btn btn-info">
+              <i class="fa-solid fa-plus"></i>
+              Añadir
+            </button>
+            } @else if (columna == 'Action' && !showAction) {
+            <button (click)="enviarInformacion(item)" class="btn btn-info">
+              Complete
+            </button>
+            } @else if (columna == 'check') {
+            <div class="mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="Add"
+              />
+              <label class="form-check-label" for="Add"> Finished </label>
+            </div>
+            }
+          </td>
+        </ng-container>
+        }}
+      </tr>
       }
-    </tr>
-  </thead>
-  <tbody>
-    @for (item of data; track $index) {
-    <tr>
-      @for (comluma of columnas; track $index) {
-      <ng-container>
-        <td>{{ item[columna] }}</td>
-      </ng-container>
-      }
-    </tr>
-    }
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

@@ -1,18 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { personaInterface } from '../../core/interface/persona.interface';
-import { TableComponent } from "../../components/table/table.component";
+import { TableComponent } from '../../components/table/table.component';
+import Swal from 'sweetalert2';
 
 @Component({
-    selector: 'app-lista-nombres',
-    standalone: true,
-    templateUrl: './lista-nombres.component.html',
-    styleUrl: './lista-nombres.component.css',
-    imports: [RouterLink, TableComponent]
+  selector: 'app-lista-nombres',
+  standalone: true,
+  templateUrl: './lista-nombres.component.html',
+  styleUrl: './lista-nombres.component.css',
+  imports: [RouterLink, TableComponent],
 })
-export class ListaNombresComponent implements OnInit{
+export class ListaNombresComponent implements OnInit {
   personas: personaInterface[] = [];
-  tituloTabla: string = "Lista de nombres";
+  tituloTabla: string = 'Lista de nombres';
+  informacionUsuario: any;
+  columnas: string[] = [
+    'nombre',
+    'fechaNacimiento',
+    'tipoDocumento',
+    'numeroDocumento',
+    'numeroCelular',
+    'email',
+    'peso',
+  ];
+
 
   ngOnInit(): void {
     this.personas = [
@@ -42,7 +54,32 @@ export class ListaNombresComponent implements OnInit{
         numeroCelular: 321965874,
         email: 'correo3@gmail.com',
         peso: '54kg',
-      }
+      },
     ];
+  }
+
+  recibirInformacion(usuario: any){{
+      Swal.fire({
+        title: usuario.nombre,
+        html:
+        `
+        <div>Nombre: ${usuario.nombre}</div>
+        <br>
+        <div>Fecha: ${usuario.fechaNacimiento}</div>
+        <br>
+        <div>Tipo Documento: ${usuario.tipoDocumento}</div>
+        <br>
+        <div>#Documento: ${usuario.numeroDocumento}</div>
+        <br>
+        <div>Numero Celular: ${usuario.numeroCelular}</div>
+        <br>
+        <div>Email: ${usuario.email}</div>
+        <br>
+        <div>Peso: ${usuario.peso}</div>
+        `,
+        icon: "success"
+      });
+      this.informacionUsuario = usuario
+    }
   }
 }

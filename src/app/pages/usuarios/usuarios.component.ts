@@ -12,6 +12,15 @@ import { TableComponent } from "../../components/table/table.component";
 export class UsuariosComponent implements OnInit {
   usuarios: personaInterface[] = [];
   tituloTabla: string = 'Lista de usuarios';
+  columnas: string[] = [
+    'nombre',
+    'fechaNacimiento',
+    'tipoDocumento',
+    'numeroDocumento',
+    'numeroCelular',
+    'email',
+    'peso',
+  ];
 
   ngOnInit(): void {
     this.usuarios = [
@@ -43,5 +52,12 @@ export class UsuariosComponent implements OnInit {
         peso: '54kg',
       },
     ];
+    this.obtenerColumnas(this.usuarios);
+  }
+
+  obtenerColumnas(usuarios: personaInterface[]) {
+    if (usuarios.length > 0) {
+      this.columnas = Object.keys(usuarios[0]);
+    }
   }
 }

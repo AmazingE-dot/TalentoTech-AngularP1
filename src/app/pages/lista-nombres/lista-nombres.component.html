@@ -1,6 +1,11 @@
 
 
 
-  <app-table [personas]="personas" [titulo]="tituloTabla"/>
+  <app-table
+  [data]="personas"
+  [titulo]="tituloTabla"
+  [columnas]="columnas"
+  (onInformacion) = "recibirInformacion($event)"
+  />
 
   <button class="mt-4 btn btn-danger " routerLink="/"><i class="fa-solid fa-plus me-1"></i>Regresar</button>

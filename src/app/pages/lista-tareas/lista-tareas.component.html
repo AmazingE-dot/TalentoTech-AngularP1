@@ -1,0 +1,14 @@
+
+<app-table
+  [titulo]="tituloTabla"
+  [data] = "tasks"
+  [columnas]="columnas"
+  [showAction]="false"
+/>
+
+<div class="justify-content-center d-flex ">
+  <button (click)="addTask()" class="btn btn-success d-flex align-items-center">
+    <i class="fa-solid fa-plus"></i>
+    New task
+  </button>
+</div>

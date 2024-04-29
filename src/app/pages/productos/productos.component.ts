@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoInterface } from '../../core/interface/products.interface';
+import { TableComponent } from "../../components/table/table.component";
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-productos',
-  standalone: true,
-  imports: [],
-  templateUrl: './productos.component.html',
-  styleUrl: './productos.component.css'
+    selector: 'app-productos',
+    standalone: true,
+    templateUrl: './productos.component.html',
+    styleUrl: './productos.component.css',
+    imports: [TableComponent]
 })
 export class ProductosComponent implements OnInit{
-  misProductos: ProductoInterface[] = []
+  misProductos: ProductoInterface[] = [];
+  titulo: string = 'Lista de productos';
+  columnas: string[] = [
+    'nombre',
+    'cantidad',
+    'precio',
+    'sku',
+  ];
+  informacion: any;
+
   ngOnInit(): void {
     this.misProductos = [
       {
@@ -37,5 +48,28 @@ export class ProductosComponent implements OnInit{
         sku: 'PANT201990',
       },
     ];
+    this.obtenerColumnas(this.misProductos);
+  }
+
+  obtenerColumnas(productos: ProductoInterface[]) {
+    if (productos.length > 0) {
+      this.columnas = Object.keys(productos[0]);
+    }
+  }
+
+  recibirInformacion(data: any){
+    Swal.fire({
+      title: data.nombre,
+      html:
+      `
+      <div>Cantidad: ${data.cantidad}</div>
+      <br>
+      <div>Total: ${data.precio}</div>
+      <br>
+      <div>Codigo SKU: ${data.sku}</div>
+      `,
+      icon: "success"
+    });
+    this.informacion = data
   }
 }

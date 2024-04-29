@@ -59,4 +59,11 @@ export const MenuRoutes: MenuInfoInterface[] = [
     classCss: '',
     subMenu: [],
   },
+  {
+    path: PATH.TASKS,
+    title: 'Tasks',
+    icon: '',
+    classCss: '',
+    subMenu: [],
+  },
 ];
