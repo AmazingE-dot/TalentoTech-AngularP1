@@ -2,13 +2,12 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
-  input,
+  SimpleChanges,
 } from '@angular/core';
-import { personaInterface } from '../../core/interface/persona.interface';
 import { DatePipe } from '@angular/common';
-import { ProductoInterface } from '../../core/interface/products.interface';
 
 @Component({
   selector: 'app-table',
@@ -17,7 +16,7 @@ import { ProductoInterface } from '../../core/interface/products.interface';
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnChanges {
   @Input() data: any[] = [];
   @Input() titulo: string = '';
   @Input() columnas: string[] = [];
@@ -28,6 +27,12 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.columnas.push('Action')
     console.log('Personas en el equipo componente hijo', this.data);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'] && changes['data'].currentValue){
+      this.data = changes['data'].currentValue
+    }
   }
 
   formatearNombreDeColumnas(columna: string): string {

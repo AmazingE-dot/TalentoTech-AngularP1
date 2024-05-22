@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { personaInterface } from '../../core/interface/persona.interface';
 import { TableComponent } from "../../components/table/table.component";
+import { UsuariosService } from '../../services/usuarios/usuarios.service';
+import { UsuarioModel } from '../../models/usuario.models';
 
 @Component({
   selector: 'app-usuarios',
@@ -10,7 +12,7 @@ import { TableComponent } from "../../components/table/table.component";
   imports: [TableComponent],
 })
 export class UsuariosComponent implements OnInit {
-  usuarios: personaInterface[] = [];
+  usuarios: UsuarioModel[] = [];
   tituloTabla: string = 'Lista de usuarios';
   columnas: string[] = [
     'nombre',
@@ -22,40 +24,17 @@ export class UsuariosComponent implements OnInit {
     'peso',
   ];
 
+  usuariosService = inject(UsuariosService)
+
   ngOnInit(): void {
-    this.usuarios = [
-      {
-        nombre: 'Eduardo Leon Usuario',
-        fechaNacimiento: new Date('1999-07-19'),
-        tipoDocumento: 'Cédula de ciudadanía',
-        numeroDocumento: '1234567890',
-        numeroCelular: 321654987,
-        email: 'correo@gmail.com',
-        peso: '60kg',
-      },
-      {
-        nombre: 'Andrea Alarcon Usuario',
-        fechaNacimiento: new Date('2001-07-19'),
-        tipoDocumento: 'Cédula de ciudadanía',
-        numeroDocumento: '987654321',
-        numeroCelular: 321456789,
-        email: 'correo2@gmail.com',
-        peso: '50kg',
-      },
-      {
-        nombre: 'Juanito Ortega Usuario',
-        fechaNacimiento: new Date('2001-03-02'),
-        tipoDocumento: 'Tarjeta Identaidad',
-        numeroDocumento: '789456123',
-        numeroCelular: 321965874,
-        email: 'correo3@gmail.com',
-        peso: '54kg',
-      },
-    ];
-    this.obtenerColumnas(this.usuarios);
+
+    this.usuariosService.getUsuarios().subscribe((resp: any) => {
+      this.usuarios = resp.usuarios;
+      this.obtenerColumnas(this.usuarios);
+    });
   }
 
-  obtenerColumnas(usuarios: personaInterface[]) {
+  obtenerColumnas(usuarios: UsuarioModel[]) {
     if (usuarios.length > 0) {
       this.columnas = Object.keys(usuarios[0]);
     }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductoInterface } from '../../core/interface/products.interface';
+import { ProductosService } from './../../services/productos/productos.service';
+import { Component, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
 import { TableComponent } from "../../components/table/table.component";
 import Swal from 'sweetalert2';
+import { ProductosModel } from '../../models/productos.models';
 
 @Component({
     selector: 'app-productos',
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
     imports: [TableComponent]
 })
 export class ProductosComponent implements OnInit{
-  misProductos: ProductoInterface[] = [];
+  misProductos: ProductosModel[] = [];
   titulo: string = 'Lista de productos';
   columnas: string[] = [
     'nombre',
@@ -19,39 +20,20 @@ export class ProductosComponent implements OnInit{
     'precio',
     'sku',
   ];
+
+  ProductosService = inject(ProductosService)
+
   informacion: any;
 
   ngOnInit(): void {
-    this.misProductos = [
-      {
-        nombre: 'Leche',
-        cantidad: 1,
-        precio: 3900,
-        sku: 'SAO210SP',
-      },
-      {
-        nombre: 'HUEVOS',
-        cantidad: 12,
-        precio: 13900,
-        sku: 'SAOASC21P',
-      },
-      {
-        nombre: 'Camisa',
-        cantidad: 1,
-        precio: 40000,
-        sku: 'AAP20193Z',
-      },
-      {
-        nombre: 'Pantalon',
-        cantidad: 2,
-        precio: 79900,
-        sku: 'PANT201990',
-      },
-    ];
     this.obtenerColumnas(this.misProductos);
+    this.ProductosService.getProductos().subscribe((resp: any) => {
+      this.misProductos = resp.productos;
+      this.obtenerColumnas(this.misProductos);
+    });
   }
 
-  obtenerColumnas(productos: ProductoInterface[]) {
+  obtenerColumnas(productos: ProductosModel[]) {
     if (productos.length > 0) {
       this.columnas = Object.keys(productos[0]);
     }
