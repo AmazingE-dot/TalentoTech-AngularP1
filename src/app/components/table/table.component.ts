@@ -25,7 +25,6 @@ export class TableComponent implements OnInit, OnChanges {
   @Output() onInformacion: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit(): void {
-    this.columnas.push('Action')
     console.log('Personas en el equipo componente hijo', this.data);
   }
 

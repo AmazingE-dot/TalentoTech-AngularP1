@@ -1,1 +1,6 @@
-<app-table [data]="usuarios" [titulo]="tituloTabla" [columnas]="columnas"/>
+<app-table
+  [data]="usuarios"
+  [titulo]="tituloTabla"
+  [columnas]="columnas"
+  (onInformacion)="recibirInformacion($event)"
+/>

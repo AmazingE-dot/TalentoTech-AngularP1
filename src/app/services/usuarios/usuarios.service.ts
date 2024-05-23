@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class UsuariosService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getUsuarios(){
     return this.httpClient.get('http://localhost:4000/api/v1/usuario')
