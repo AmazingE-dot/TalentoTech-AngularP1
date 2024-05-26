@@ -1,0 +1,37 @@
+<p>crear-productos works!</p>
+
+<form class="mx-5" [formGroup]="productoForm" (ngSubmit)="crearProducto()">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre</label>
+    <input type="text" class="form-control" formControlName="nombre">
+  </div>
+  <div class="mb-3">
+    <label for="SKU" class="form-label">SKU</label>
+    <input type="text" class="form-control" formControlName="SKU">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="cantidad">Cantidad</label>
+    <input type="number" class="form-control" formControlName="cantidad">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="precio">Precio</label>
+    <input type="number" class="form-control" formControlName="precio">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="nit">NIT</label>
+    <input type="text" class="form-control" formControlName="nit">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="razonSocial">Razón social</label>
+    <input type="text" class="form-control" formControlName="razonSocial">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="telefono">Teléfono</label>
+    <input type="number" class="form-control" formControlName="telefono">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="direccion">Dirección</label>
+    <input type="text" class="form-control" formControlName="direccion">
+  </div>
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>

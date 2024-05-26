@@ -25,7 +25,6 @@ export class TableComponent implements OnInit, OnChanges {
   @Output() onInformacion: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit(): void {
-    console.log('Personas en el equipo componente hijo', this.data);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -45,7 +44,6 @@ export class TableComponent implements OnInit, OnChanges {
 
   enviarInformacion(data:any){
     //Emite un evento con la información de *data*
-    console.log('Data componente hijo', data)
     this.onInformacion.emit(data)
   }
 }

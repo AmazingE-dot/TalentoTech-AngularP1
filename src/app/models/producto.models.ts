@@ -1,16 +1,13 @@
+import { DistribuidorInterface } from "../core/interface/products.interface";
+
 export class ProductosModel {
   constructor(
     public readonly _id: string,
     public nombre: string,
     public SKU: string,
-    public cantidad: string,
+    public cantidad: number,
     public precio: number,
-    public distribuidor: {
-      nit: string;
-      razonSocial: string;
-      telefono: number;
-      direccion: string;
-    },
+    public distribuidor: DistribuidorInterface,
     public createdAt: Date,
     public usuario: {
       _id: string;

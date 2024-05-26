@@ -6,8 +6,9 @@ import { ImagenesComponent } from './pages/imagenes/imagenes.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { PATH } from './core/enum/path.enum';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
-import { ProductosComponent } from './pages/productos/productos.component';
+import { ProductosComponent } from './pages/administrar-productos/productos/productos.component';
 import { ListaTareasComponent } from './pages/lista-tareas/lista-tareas.component';
+import { CrearProductosComponent } from './pages/administrar-productos/crear-productos/crear-productos.component';
 
 export const routes: Routes = [
   {
@@ -48,6 +49,11 @@ export const routes: Routes = [
         path: PATH.PRODUCTS,
         title: 'Productos',
         component: ProductosComponent,
+      },
+      {
+        path: PATH.CREAR_PRODUCTOS,
+        title: 'Productos',
+        component: CrearProductosComponent,
       },
       {
         path: PATH.TASKS,

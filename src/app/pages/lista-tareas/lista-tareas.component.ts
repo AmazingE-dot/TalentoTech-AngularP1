@@ -56,7 +56,6 @@ export class ListaTareasComponent implements OnInit {
       }
       this.tasks.push(task)
       Swal.fire(JSON.stringify(formValues));
-      console.log(JSON.stringify(formValues))
     }
   }
 }
