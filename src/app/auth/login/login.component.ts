@@ -1,3 +1,5 @@
+import { UsuarioModel } from './../../models/usuario.models';
+import { LoginInterface } from './../../core/interface/login.interface';
 import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -6,6 +8,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { UsuariosService } from '../../services/usuarios/usuarios.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { PATH } from '../../core/enum/path.enum';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +25,8 @@ export class LoginComponent implements OnInit {
   isLogin: boolean;
 
   private formBuilder = inject(FormBuilder);
+  private usuarioService = inject(UsuariosService);
+  private router = inject(Router)
 
   get formLogin() {
     return this.loginForm.controls;
@@ -38,6 +46,35 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isLogin = true;
-    console.log(this.loginForm);
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    const data = this.loginForm.value;
+
+    const loginData: LoginInterface = {
+      email: data.email,
+      password: data.password,
+    };
+
+    this.usuarioService.login(loginData).subscribe({
+      next: (resp: any) => {
+        const {nombre, email, telefono} = resp.usuario
+
+        Swal.fire({
+          html: `Bienvenido ${nombre}`
+        }).then(() => {
+          this.router.navigateByUrl(PATH.HOME)
+        });
+      },
+      error: (error: any) => {
+        Swal.fire({
+          html: `Bienvenido ${error.error.msg}`,
+          icon: 'warning'
+        });
+        console.log(error.error.msg);
+      }
+    })
   }
 }

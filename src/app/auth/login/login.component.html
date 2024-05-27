@@ -21,8 +21,12 @@
         placeholder="Correo electrónico"
       />
       @if(isLogin && formLogin['email'].errors){
-      <small style="color: red;"> El correo electrónico es requerido </small>
+      <small style="color: red"> El correo electrónico es requerido </small>
+
+      } @if(formLogin['email'].hasError('email') && formLogin['email'].touched){
+      <small style="color: red"> Debe ser un correo electronico </small>
       }
+
     </div>
 
     <div class="form-outline mb-2">
@@ -33,6 +37,15 @@
         placeholder="Contraseña"
       />
     </div>
+
+    @if(!!isLogin && formLogin['password'].hasError('required')){
+      <small style="color: red"> La contraseña es obligatoria </small>
+    }
+
+    @if(!!isLogin && formLogin['password'].hasError('minlength')){
+      <small style="color: red"> La longitud de la contraseña debe ser mayor a 3 caracteres </small>
+    }
+
 
     <div
       class="form-outline mt-3"
