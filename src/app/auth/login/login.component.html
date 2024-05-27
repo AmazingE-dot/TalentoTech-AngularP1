@@ -1,0 +1,46 @@
+<div
+  style="
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <form
+    [formGroup]="loginForm"
+    autocomplete="off"
+    class="form-signin"
+    (submit)="login()"
+  >
+    <div class="form-outline mb-4">
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control form-control-lg"
+        placeholder="Correo electrónico"
+      />
+      @if(isLogin && formLogin['email'].errors){
+      <small style="color: red;"> El correo electrónico es requerido </small>
+      }
+    </div>
+
+    <div class="form-outline mb-2">
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control form-control-lg"
+        placeholder="Contraseña"
+      />
+    </div>
+
+    <div
+      class="form-outline mt-3"
+      style="display: flex; justify-content: center"
+    >
+      <button type="submit" class="btn btn-primary btn-lg">
+        Iniciar Sesión
+      </button>
+    </div>
+  </form>
+</div>

@@ -4,6 +4,7 @@ export enum PATH {
   CREAR_PRODUCTOS = 'CrearProductos',
   HOME = 'Inicio',
   IMAGE = 'Imagenes',
+  LOGIN = 'Login',
   NAME = 'ListaNombres',
   INICIO = '',
   USUARIOS = 'Usuario',

@@ -9,6 +9,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ProductosComponent } from './pages/administrar-productos/productos/productos.component';
 import { ListaTareasComponent } from './pages/lista-tareas/lista-tareas.component';
 import { CrearProductosComponent } from './pages/administrar-productos/crear-productos/crear-productos.component';
+import { LoginComponent } from './auth/login/login.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,11 @@ export const routes: Routes = [
         path: PATH.IMAGE,
         title: 'Lista de imagenes',
         component: ImagenesComponent,
+      },
+      {
+        path: PATH.LOGIN,
+        title: 'Login',
+        component: LoginComponent,
       },
       {
         path: PATH.NAME,
