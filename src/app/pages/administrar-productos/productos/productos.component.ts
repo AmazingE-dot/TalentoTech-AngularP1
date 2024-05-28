@@ -27,13 +27,10 @@ export class ProductosComponent implements OnInit {
   private activateRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.productosResolver = this.activateRoute.data.pipe(
-      map((data) => data['productos'])
-    );
 
-    this.misProductos = this.productosResolver.source._value.productos;
-
-    this.obtenerColumnas(this.misProductos);
+    this.activateRoute.data.subscribe(({ productos }) => {
+        this.misProductos = this.productos
+      });
   }
 
   resumenProducto(producto: ProductosModel): ProductoInterface {

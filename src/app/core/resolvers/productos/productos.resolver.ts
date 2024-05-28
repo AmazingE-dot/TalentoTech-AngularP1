@@ -1,10 +1,16 @@
-import { ResolveFn } from '@angular/router';
+import { UsuariosService } from './../../../services/usuarios/usuarios.service';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  ResolveFn,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { ProductosService } from '../../../services/productos/productos.service';
 import { inject } from '@angular/core';
-import { ProductosModel } from '../../../models/producto.models';
 
-export const productosResolver: ResolveFn<ProductosModel[]> = (route, state) => {
-  const productosService = inject(ProductosService);
-
-  return productosService.getProductos()
-}
+export const productosResolver: ResolveFn<any> = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  return inject(ProductosService).getProductos();
+};
