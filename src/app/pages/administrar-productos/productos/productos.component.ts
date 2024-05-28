@@ -1,11 +1,11 @@
-import { ProductosService } from '../../../services/productos/productos.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { TableComponent } from '../../../components/table/table.component';
 import Swal from 'sweetalert2';
 import { ProductosModel } from '../../../models/producto.models';
 import { ProductoInterface } from '../../../core/interface/products.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PATH } from '../../../core/enum/path.enum';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-productos',
@@ -21,23 +21,19 @@ export class ProductosComponent implements OnInit {
 
   titulo: string = 'Lista de productos';
   columnas: string[] = [];
+  productosResolver: any;
 
-  private ProductosService = inject(ProductosService);
-  private router = inject(Router)
+  private router = inject(Router);
+  private activateRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    this.ProductosService
-    .getProductos()
-    .subscribe(
-      (productos: ProductosModel[]) => {
-        this.productos = productos;
-        this.misProductos = productos.map((producto) =>
-          this.resumenProducto(producto)
-        );
-
-        this.obtenerColumnas(this.misProductos);
-      }
+    this.productosResolver = this.activateRoute.data.pipe(
+      map((data) => data['productos'])
     );
+
+    this.misProductos = this.productosResolver.source._value.productos;
+
+    this.obtenerColumnas(this.misProductos);
   }
 
   resumenProducto(producto: ProductosModel): ProductoInterface {
@@ -57,10 +53,11 @@ export class ProductosComponent implements OnInit {
   }
 
   recibirInformacion(data: ProductoInterface) {
+    this.informacion = this.productos.find(
+      (producto) => producto.SKU === data.SKU
+    );
 
-    this.informacion = this.productos.find((producto) => producto.SKU === data.SKU)
-
-    if (this.informacion){
+    if (this.informacion) {
       Swal.fire({
         title: this.informacion.nombre,
         html: `
@@ -84,7 +81,7 @@ export class ProductosComponent implements OnInit {
       });
     }
   }
-  crearProductos(){
-    this.router.navigateByUrl(`${PATH.CREAR_PRODUCTOS}`)
+  crearProductos() {
+    this.router.navigateByUrl(`${PATH.CREAR_PRODUCTOS}`);
   }
 }

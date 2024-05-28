@@ -10,11 +10,19 @@ import { ProductosComponent } from './pages/administrar-productos/productos/prod
 import { ListaTareasComponent } from './pages/lista-tareas/lista-tareas.component';
 import { CrearProductosComponent } from './pages/administrar-productos/crear-productos/crear-productos.component';
 import { LoginComponent } from './auth/login/login.component';
+import { authGuard } from './core/guards/auth/auth.guard';
+import { productosResolver } from './core/resolvers/productos/productos.resolver';
 
 export const routes: Routes = [
   {
+    path: PATH.LOGIN,
+    title: 'Login',
+    component: LoginComponent,
+  },
+  {
     path: '',
     title: 'Home',
+    canActivate: [authGuard],
     children: [
       {
         path: PATH.INICIO,
@@ -25,11 +33,6 @@ export const routes: Routes = [
         path: PATH.IMAGE,
         title: 'Lista de imagenes',
         component: ImagenesComponent,
-      },
-      {
-        path: PATH.LOGIN,
-        title: 'Login',
-        component: LoginComponent,
       },
       {
         path: PATH.NAME,
@@ -55,6 +58,9 @@ export const routes: Routes = [
         path: PATH.PRODUCTS,
         title: 'Productos',
         component: ProductosComponent,
+        resolve: {
+          productos: productosResolver,
+        }
       },
       {
         path: PATH.CREAR_PRODUCTOS,

@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   private formBuilder = inject(FormBuilder);
   private usuarioService = inject(UsuariosService);
-  private router = inject(Router)
+  private router = inject(Router);
 
   get formLogin() {
     return this.loginForm.controls;
@@ -60,21 +60,21 @@ export class LoginComponent implements OnInit {
 
     this.usuarioService.login(loginData).subscribe({
       next: (resp: any) => {
-        const {nombre, email, telefono} = resp.usuario
+        const { nombre, email, telefono } = resp.usuario;
 
         Swal.fire({
-          html: `Bienvenido ${nombre}`
+          html: `Bienvenido ${nombre}`,
         }).then(() => {
-          this.router.navigateByUrl(PATH.HOME)
+          this.router.navigateByUrl(PATH.INICIO);
         });
       },
       error: (error: any) => {
         Swal.fire({
           html: `Bienvenido ${error.error.msg}`,
-          icon: 'warning'
+          icon: 'warning',
         });
         console.log(error.error.msg);
-      }
-    })
+      },
+    });
   }
 }
