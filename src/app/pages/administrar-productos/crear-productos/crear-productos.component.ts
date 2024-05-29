@@ -10,6 +10,7 @@ import {
   CrearProductoInterface,
   ProductoInterface,
 } from '../../../core/interface/products.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-productos',
@@ -54,8 +55,15 @@ export class CrearProductosComponent implements OnInit {
 
     this.ProductosService.crearProductos(nuevoProducto).subscribe(
       (resp: any) => {
-        console.log('respuesta', resp);
+        Swal.fire(
+          'Producto creado', `${resp.msg}`, 'success'
+        )
+        this.resetFormulario();
       }
     );
+  }
+
+  resetFormulario(){
+    this.productoForm.reset();
   }
 }

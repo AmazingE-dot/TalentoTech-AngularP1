@@ -34,6 +34,15 @@ export class ProductosService {
       .pipe(map((respuesta) => respuesta.productos));
   }
 
+  getUnProductos(id: string) {
+    return this.httpClient
+      .get<{ ok: boolean; producto: ProductosModel[] }>(
+        `${base_url}/producto/${id}`,
+        this.headers
+      )
+      .pipe(map((respuesta) => respuesta.producto));
+  }
+
   crearProductos(producto: CrearProductoInterface) {
     return this.httpClient.post(`${base_url}/producto`, producto, this.headers);
   }

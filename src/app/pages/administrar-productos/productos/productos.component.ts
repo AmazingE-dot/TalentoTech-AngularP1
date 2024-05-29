@@ -93,4 +93,15 @@ export class ProductosComponent implements OnInit {
   crearProductos() {
     this.router.navigateByUrl(`${PATH.CREAR_PRODUCTOS}`);
   }
+
+  eliminar(data: ProductosModel){
+    this.productosService.eliminarProductos(data._id).subscribe(
+      (resp: any) => {
+        Swal.fire(
+          'Producto eliminado', `${resp.msg}`, 'success'
+        );
+        this.cargarProductos();
+      }
+    );
+  }
 }

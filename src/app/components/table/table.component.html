@@ -26,7 +26,20 @@
       }}
       <td>
         <button
-        class="btn btn-info" type="button" (click)="enviarInformacion(item)">info</button>
+          class="btn btn-info"
+          type="button"
+          (click)="enviarInformacion(item)"
+        >
+          info
+        </button>
+
+        <button
+          class="btn btn-danger ms-4"
+          type="button"
+          (click)="eliminar(item)"
+        >
+          Eliminar
+        </button>
       </td>
     </tr>
     }

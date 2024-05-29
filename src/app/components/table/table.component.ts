@@ -23,6 +23,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() showAction:boolean = true
 
   @Output() onInformacion: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onEliminar: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit(): void {
   }
@@ -45,5 +46,9 @@ export class TableComponent implements OnInit, OnChanges {
   enviarInformacion(data:any){
     //Emite un evento con la información de *data*
     this.onInformacion.emit(data)
+  }
+
+  eliminar(data: any){
+    this.onEliminar.emit(data)
   }
 }
