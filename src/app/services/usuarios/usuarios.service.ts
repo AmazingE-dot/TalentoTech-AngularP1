@@ -6,6 +6,7 @@ import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { PATH } from '../../core/enum/path.enum';
 import { UsuarioModel } from '../../models/usuario.models';
+import { crearUsuarioInterface } from '../../core/interface/usuario.interface';
 
 const base_url = environment.base_url;
 
@@ -21,6 +22,12 @@ export class UsuariosService {
 
   get token(): string {
     return localStorage.getItem('token') || '';
+  }
+
+  get headers(){
+    return {
+      headers: { 'x-token': this.token },
+    }
   }
 
   valdiateToken(): Observable<boolean> {
@@ -61,7 +68,7 @@ export class UsuariosService {
         }),
         catchError((error) => {
           console.log(error);
-          return of(false)
+          return of(false);
         })
       );
   }
@@ -80,6 +87,24 @@ export class UsuariosService {
   }
 
   getUsuarios() {
-    return this.httpClient.get(`${base_url}/usuario`);
+    return this.httpClient.get(`${base_url}/usuario`, {headers: {
+      'x-token': this.token
+    }});
+  }
+
+  getUnUsuario(id: string) {
+    return this.httpClient.get(`${base_url}/usuario/${id}`);
+  }
+
+  crearUsuario(usuario: crearUsuarioInterface) {
+    return this.httpClient.post(`${base_url}/usuario/`, usuario);
+  }
+
+  actualizarUsuario(usuario: UsuarioModel) {
+    return this.httpClient.put(`${base_url}/usuario/${usuario._id}`, usuario);
+  }
+
+  eliminarUusario(id: string) {
+    return this.httpClient.delete(`${base_url}/usuario/${id}`);
   }
 }
