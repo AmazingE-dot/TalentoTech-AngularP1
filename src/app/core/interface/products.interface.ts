@@ -7,7 +7,6 @@ export interface ProductoInterface {
 }
 
 export interface CrearProductoInterface {
-  readonly _id: string;
   nombre: string;
   SKU: string;
   cantidad: number;

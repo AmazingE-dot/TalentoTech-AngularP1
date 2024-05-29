@@ -1,11 +1,12 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { TableComponent } from '../../../components/table/table.component';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import Swal from 'sweetalert2';
-import { ProductosModel } from '../../../models/producto.models';
-import { ProductoInterface } from '../../../core/interface/products.interface';
+import { ProductosService } from '../../../services/productos/productos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PATH } from '../../../core/enum/path.enum';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { TableComponent } from '../../../components/table/table.component';
+import { ProductoInterface } from '../../../core/interface/products.interface';
+import { ProductosModel } from '../../../models/producto.models';
 
 @Component({
   selector: 'app-productos',
@@ -17,28 +18,35 @@ import { map } from 'rxjs';
 export class ProductosComponent implements OnInit {
   misProductos: ProductoInterface[] = [];
   productos: ProductosModel[] = [];
-  informacion: ProductosModel | undefined;
 
-  titulo: string = 'Lista de productos';
-  columnas: string[] = [];
   productosResolver: any;
 
+  titulo: string = 'Lista de Productos';
+  columnas: string[] = [];
+  informacion: ProductosModel | undefined;
+
   private router = inject(Router);
-  private activateRoute = inject(ActivatedRoute);
+  private activatedRoute = inject(ActivatedRoute);
+  private productosService = inject(ProductosService);
 
   ngOnInit(): void {
-
-    this.activateRoute.data.subscribe(({ productos }) => {
-        this.misProductos = this.productos
-      });
+    this.cargarProductos();
   }
 
-  resumenProducto(producto: ProductosModel): ProductoInterface {
+  cargarProductos() {
+    this.activatedRoute.data.subscribe(({ productos }) => {
+      this.misProductos = productos;
+    });
+
+    this.obtenerColumnas(this.misProductos);
+  }
+
+  resumenDeProducto(producto: ProductosModel): ProductoInterface {
     return {
       nombre: producto.nombre,
       SKU: producto.SKU,
-      precio: producto.precio,
       cantidad: producto.cantidad,
+      precio: producto.precio,
       createdAt: producto.createdAt,
     };
   }
@@ -56,28 +64,32 @@ export class ProductosComponent implements OnInit {
 
     if (this.informacion) {
       Swal.fire({
-        title: this.informacion.nombre,
-        html: `
-        <div>Codigo SKU: ${this.informacion.SKU}</div>
-        <br>
-        <div>Cantidad: ${this.informacion.cantidad}</div>
-        <br>
-        <div>Distribuidor: ${this.informacion.distribuidor.razonSocial}</div>
-        <br>
-        <div>Distribuidor NIT: ${this.informacion.distribuidor.nit}</div>
-        <br>
-        <div>Distribuidor TEL: ${this.informacion.distribuidor.telefono}</div>
-        <br>
-        <div>Opiniones: ${this.informacion.opiniones?.comentarios}</div>
-        <br>
-        <div>Puntuación: ${this.informacion.opiniones?.calificacion}</div>
-        <br>
-        <div>Total: ${this.informacion.precio}</div>
-        `,
+        title: 'Información',
+        html: `<ul>
+              <li> <b>Nombre: </b>${this.informacion.nombre}</li>
+
+              <li> <b>SKU: </b>${this.informacion.SKU}</li>
+
+              <li> <b>Precio: </b>${this.informacion.precio}</li>
+
+              <li> <b>Cantidad: </b>${this.informacion.cantidad}</li>
+
+              <li> <b>Nombre Distribuidor: </b>${this.informacion.distribuidor.razonSocial}</li>
+
+              <li> <b>Dirección Distribuidor: </b>${this.informacion.distribuidor.direccion}</li>
+
+              <li> <b>Telefono del Distribuidor: </b>${this.informacion.distribuidor.telefono}</li>
+
+              <li> <b>Usuario que registró: </b>${this.informacion.usuario.nombre}</li>
+
+              <li> <b>Calificación: </b>${this.informacion.opiniones?.calificacion}</li>
+
+            </ul>`,
         icon: 'success',
       });
     }
   }
+
   crearProductos() {
     this.router.navigateByUrl(`${PATH.CREAR_PRODUCTOS}`);
   }

@@ -1,3 +1,4 @@
+import { ProductosService } from './../../../services/productos/productos.service';
 import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -5,6 +6,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import {
+  CrearProductoInterface,
+  ProductoInterface,
+} from '../../../core/interface/products.interface';
 
 @Component({
   selector: 'app-crear-productos',
@@ -17,6 +22,7 @@ export class CrearProductosComponent implements OnInit {
   productoForm: FormGroup;
 
   private formBuilder = inject(FormBuilder);
+  private ProductosService = inject(ProductosService);
 
   ngOnInit(): void {
     this.productoForm = this.formBuilder.group({
@@ -27,12 +33,29 @@ export class CrearProductosComponent implements OnInit {
       nit: ['', []],
       razonSocial: ['', []],
       telefono: ['', []],
-      direccion: ['', []]
+      direccion: ['', []],
     });
   }
 
-  crearProducto(){
-    console.log(this.productoForm.value)
-  }
+  crearProducto() {
+    const data = this.productoForm.value;
+    const nuevoProducto: CrearProductoInterface = {
+      nombre: data.nombre,
+      SKU: data.SKU,
+      cantidad: data.cantidad,
+      precio: data.precio,
+      distribuidor: {
+        nit: data.nit,
+        razonSocial: data.razonSocial,
+        telefono: data.telefono,
+        direccion: data.direccion,
+      },
+    };
 
+    this.ProductosService.crearProductos(nuevoProducto).subscribe(
+      (resp: any) => {
+        console.log('respuesta', resp);
+      }
+    );
+  }
 }
