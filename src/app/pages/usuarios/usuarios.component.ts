@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { personaInterface } from '../../core/interface/persona.interface';
 import { TableComponent } from '../../components/table/table.component';
 import { UsuariosService } from '../../services/usuarios/usuarios.service';
 import { UsuarioModel } from '../../models/usuario.models';
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -12,28 +13,25 @@ import Swal from 'sweetalert2';
   styleUrl: './usuarios.component.css',
   imports: [TableComponent],
 })
-export class UsuariosComponent implements OnInit {
-  usuarios: UsuarioModel[] = [];
+export class UsuariosComponent implements OnInit, OnDestroy {
   tituloTabla: string = 'Lista de usuarios';
-  columnas: string[] = [
-    'nombre',
-    'fechaNacimiento',
-    'tipoDocumento',
-    'numeroDocumento',
-    'numeroCelular',
-    'email',
-    'peso',
-  ];
+  columnas: string[] = [];
+  usuarios: UsuarioModel[] = [];
+  informacion!: UsuarioModel;
+
+  usuarioSubscription: Subscription;
 
   usuariosService = inject(UsuariosService);
 
-  informacion!: UsuarioModel;
-
   ngOnInit(): void {
-    this.usuariosService.getUsuarios().subscribe((resp: any) => {
+    this.usuarioSubscription = this.usuariosService.getUsuarios().subscribe((resp: any) => {
       this.usuarios = resp.usuarios;
       this.obtenerColumnas(this.usuarios);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.usuarioSubscription?.unsubscribe;
   }
 
   obtenerColumnas(usuarios: UsuarioModel[]) {
@@ -43,7 +41,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   recibirInformacion(data: UsuarioModel) {
-    this.informacion = data
+    this.informacion = data;
     Swal.fire({
       title: 'Datos del usuario',
       html: `

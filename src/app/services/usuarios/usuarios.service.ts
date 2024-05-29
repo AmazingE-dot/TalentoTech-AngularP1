@@ -87,24 +87,26 @@ export class UsuariosService {
   }
 
   getUsuarios() {
-    return this.httpClient.get(`${base_url}/usuario`, {headers: {
-      'x-token': this.token
-    }});
+    return this.httpClient.get( `${base_url}/usuario`, this.headers );
   }
 
   getUnUsuario(id: string) {
-    return this.httpClient.get(`${base_url}/usuario/${id}`);
+    return this.httpClient.get(`${base_url}/usuario/${id}`, this.headers);
   }
 
   crearUsuario(usuario: crearUsuarioInterface) {
-    return this.httpClient.post(`${base_url}/usuario/`, usuario);
+    return this.httpClient.post(`${base_url}/usuario/`, usuario, this.headers);
   }
 
   actualizarUsuario(usuario: UsuarioModel) {
-    return this.httpClient.put(`${base_url}/usuario/${usuario._id}`, usuario);
+    return this.httpClient.put(
+      `${base_url}/usuario/${usuario._id}`,
+      usuario,
+      this.headers
+    );
   }
 
   eliminarUusario(id: string) {
-    return this.httpClient.delete(`${base_url}/usuario/${id}`);
+    return this.httpClient.delete(`${base_url}/usuario/${id}`, this.headers);
   }
 }
