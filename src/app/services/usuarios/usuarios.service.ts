@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment.development';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { PATH } from '../../core/enum/path.enum';
-import { UsuarioModel } from '../../models/usuario.models';
+import { UsuarioModel } from '../../core/models/usuario.models';
 import { crearUsuarioInterface } from '../../core/interface/usuario.interface';
 
 const base_url = environment.base_url;

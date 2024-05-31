@@ -6,7 +6,7 @@ import { PATH } from '../../../core/enum/path.enum';
 import { Observable, map } from 'rxjs';
 import { TableComponent } from '../../../components/table/table.component';
 import { ProductoInterface } from '../../../core/interface/products.interface';
-import { ProductosModel } from '../../../models/producto.models';
+import { ProductosModel } from '../../../core/models/producto.models';
 
 @Component({
   selector: 'app-productos',

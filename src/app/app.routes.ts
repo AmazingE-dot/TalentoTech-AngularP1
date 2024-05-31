@@ -5,13 +5,14 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { ImagenesComponent } from './pages/imagenes/imagenes.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { PATH } from './core/enum/path.enum';
-import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { UsuariosComponent } from './pages/administrar-usuarios/usuarios/usuarios.component';
 import { ProductosComponent } from './pages/administrar-productos/productos/productos.component';
 import { ListaTareasComponent } from './pages/lista-tareas/lista-tareas.component';
 import { CrearProductosComponent } from './pages/administrar-productos/crear-productos/crear-productos.component';
 import { LoginComponent } from './auth/login/login.component';
 import { authGuard } from './core/guards/auth/auth.guard';
 import { productosResolver } from './core/resolvers/productos/productos.resolver';
+import { CrearUsuariosComponent } from './pages/administrar-usuarios/crear-usuarios/crear-usuarios.component';
 
 export const routes: Routes = [
   {
@@ -66,6 +67,11 @@ export const routes: Routes = [
         path: PATH.CREAR_PRODUCTOS,
         title: 'Productos',
         component: CrearProductosComponent,
+      },
+      {
+        path: PATH.CREAR_USUARIO,
+        title: 'Crear usuarios',
+        component: CrearUsuariosComponent,
       },
       {
         path: PATH.TASKS,

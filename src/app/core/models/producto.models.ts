@@ -1,4 +1,4 @@
-import { DistribuidorInterface } from "../core/interface/products.interface";
+import { DistribuidorInterface } from "../interface/products.interface";
 
 export class ProductosModel {
   constructor(

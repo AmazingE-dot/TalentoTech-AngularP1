@@ -46,6 +46,13 @@ export const MenuRoutes: MenuInfoInterface[] = [
     subMenu: [],
   },
   {
+    path: PATH.CREAR_USUARIO,
+    title: 'Crear Usuario',
+    icon: '',
+    classCss: '',
+    subMenu: [],
+  },
+  {
     path: PATH.USUARIOS,
     title: 'Usuarios',
     icon: '',

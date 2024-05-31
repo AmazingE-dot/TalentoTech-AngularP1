@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
-import { ProductosModel } from '../../models/producto.models';
+import { ProductosModel } from '../../core/models/producto.models';
 import { environment } from '../../../environments/environment.development';
 import { CrearProductoInterface } from '../../core/interface/products.interface';
 

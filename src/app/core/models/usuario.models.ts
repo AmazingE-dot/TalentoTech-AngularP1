@@ -5,10 +5,11 @@ export class UsuarioModel {
     public email: string,
     public tipoDocumento: string,
     public numeroDocumento: string,
-    public createdAt: Date,
     public rol: string,
-    public peso?: string,
-    public password?: string,
+    public createdAt?: Date,
     public numeroCelular?: number,
-  ){}
+    public peso?: string,
+    public fechaNacimiento?: Date,
+    public password?: string
+  ) {}
 }

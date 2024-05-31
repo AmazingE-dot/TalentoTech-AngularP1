@@ -1,4 +1,4 @@
-import { UsuarioModel } from './../../models/usuario.models';
+import { UsuarioModel } from '../../core/models/usuario.models';
 import { LoginInterface } from './../../core/interface/login.interface';
 import { Component, OnInit, inject } from '@angular/core';
 import {
