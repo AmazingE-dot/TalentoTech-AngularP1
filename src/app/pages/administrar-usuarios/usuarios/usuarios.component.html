@@ -1,6 +1,18 @@
-<app-table
-  [data]="usuarios"
-  [titulo]="tituloTabla"
-  [columnas]="columnas"
-  (onInformacion)="recibirInformacion($event)"
-/>
+<div>
+  <button
+    class="btn btn-primary"
+    (click)="irAcrearUsuarios()"
+    *appRol="['USER', 'EMPLEADO', 'GERENTE']"
+  >
+    Crear Usuarios
+  </button>
+
+  <app-table
+    [data]="usuarios"
+    [titulo]="'Lista de usuarios'"
+    [columnas]="columnas"
+    (onInformacion)="recibirInformacion($event)"
+    (onEditar)="editarUsuario($event)"
+    (onEliminar)="eliminarUsuario($event)"
+  ></app-table>
+</div>

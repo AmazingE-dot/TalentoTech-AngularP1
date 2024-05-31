@@ -106,7 +106,7 @@ export class UsuariosService {
     );
   }
 
-  eliminarUusario(id: string) {
+  deleteUsuario(id: string) {
     return this.httpClient.delete(`${base_url}/usuario/${id}`, this.headers);
   }
 }
