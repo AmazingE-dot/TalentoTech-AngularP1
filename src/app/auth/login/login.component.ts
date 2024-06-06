@@ -63,7 +63,8 @@ export class LoginComponent implements OnInit {
         const { nombre, email, telefono } = resp.usuario;
 
         Swal.fire({
-          html: `Bienvenido ${nombre}`,
+          icon: 'success',
+          html: `<p style="text-align:center;">Bienvenido a BeTidy <br>${nombre}<br>${email}</p>`,
         }).then(() => {
           this.router.navigateByUrl(PATH.INICIO);
         });

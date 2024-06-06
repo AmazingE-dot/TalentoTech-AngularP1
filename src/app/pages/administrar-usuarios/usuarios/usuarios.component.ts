@@ -5,6 +5,8 @@ import { UsuariosService } from '../../../services/usuarios/usuarios.service';
 import { UsuarioModel } from '../../../core/models/usuario.models';
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
+import { PATH } from '../../../core/enum/path.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -14,24 +16,30 @@ import { Subscription } from 'rxjs';
   imports: [TableComponent],
 })
 export class UsuariosComponent implements OnInit, OnDestroy {
-  tituloTabla: string = 'Lista de usuarios';
-  columnas: string[] = [];
   usuarios: UsuarioModel[] = [];
-  informacion!: UsuarioModel;
+  columnas: string[] = [];
+  informacion: UsuarioModel;
 
   usuarioSubscription: Subscription;
 
-  usuariosService = inject(UsuariosService);
+  private usuarioService = inject(UsuariosService);
+  private router = inject(Router);
 
   ngOnInit(): void {
-    this.usuarioSubscription = this.usuariosService.getUsuarios().subscribe((resp: any) => {
-      this.usuarios = resp.usuarios;
-      this.obtenerColumnas(this.usuarios);
-    });
+    this.cargarUsuarios();
   }
 
   ngOnDestroy(): void {
-    this.usuarioSubscription?.unsubscribe;
+    this.usuarioSubscription?.unsubscribe();
+  }
+
+  cargarUsuarios() {
+    this.usuarioSubscription = this.usuarioService
+      .getUsuarios()
+      .subscribe((resp: any) => {
+        this.usuarios = resp.usuarios;
+        this.obtenerColumnas(this.usuarios);
+      });
   }
 
   obtenerColumnas(usuarios: UsuarioModel[]) {
@@ -43,17 +51,43 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   recibirInformacion(data: UsuarioModel) {
     this.informacion = data;
     Swal.fire({
-      title: 'Datos del usuario',
-      html: `
-      <div>Nombre: ${this.informacion.nombre}</div>
-      <br>
-      <div>Documento: ${this.informacion.numeroDocumento}</div>
-      <br>
-      <div>Numero de celular: ${this.informacion.numeroCelular}</div>
-      `,
+      title: 'Información',
+      html: `<ul>
+              <li> <b>Nombre: </b>${this.informacion.nombre}</li>
+
+              <li> <b>Email: </b>${this.informacion.email}</li>
+
+              <li> <b>Tipo de Documento: </b>${this.informacion.tipoDocumento}</li>
+
+              <li> <b>Numero de Documento: </b>${this.informacion.numeroDocumento}</li>
+            </ul>`,
       icon: 'success',
     });
   }
 
+  irAcrearUsuarios() {
+    this.router.navigateByUrl(`${PATH.CREAR_USUARIO}/nuevo`);
+  }
 
+  editarUsuario(data: any) {
+    console.log(data);
+
+    this.router.navigateByUrl(`${PATH.CREAR_USUARIO}/${data._id}`);
+  }
+
+  eliminarUsuario(data: UsuarioModel) {
+    this.usuarioService.deleteUsuario(data._id).subscribe({
+      next: async (res: any) => {
+        Swal.fire(
+          'Usuario',
+          `El usuario ${data.nombre} ha sido eliminado con éxito`,
+          'warning'
+        );
+        await this.cargarUsuarios();
+      },
+      error: (error) => {
+        Swal.fire('Error', `${error.error.msg}`, 'error');
+      },
+    });
+  }
 }

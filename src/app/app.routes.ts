@@ -1,10 +1,10 @@
+import { Routes, CanActivateFn } from '@angular/router';
+import { PATH } from './core/enum/path.enum';
 import { AcercaDeComponent } from './pages/acerca-de/acerca-de.component';
-import { Routes } from '@angular/router';
 import { ListaNombresComponent } from './pages/lista-nombres/lista-nombres.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ImagenesComponent } from './pages/imagenes/imagenes.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
-import { PATH } from './core/enum/path.enum';
 import { UsuariosComponent } from './pages/administrar-usuarios/usuarios/usuarios.component';
 import { ProductosComponent } from './pages/administrar-productos/productos/productos.component';
 import { ListaTareasComponent } from './pages/lista-tareas/lista-tareas.component';
@@ -14,6 +14,7 @@ import { authGuard } from './core/guards/auth/auth.guard';
 import { productosResolver } from './core/resolvers/productos/productos.resolver';
 import { CrearUsuariosComponent } from './pages/administrar-usuarios/crear-usuarios/crear-usuarios.component';
 
+
 export const routes: Routes = [
   {
     path: PATH.LOGIN,
@@ -21,7 +22,7 @@ export const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: '',
+    path: PATH.HOME,
     title: 'Home',
     canActivate: [authGuard],
     children: [
