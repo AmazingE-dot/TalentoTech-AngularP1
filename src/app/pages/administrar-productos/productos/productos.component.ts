@@ -36,6 +36,7 @@ export class ProductosComponent implements OnInit {
   cargarProductos() {
     this.activatedRoute.data.subscribe(({ productos }) => {
       this.misProductos = productos;
+      this.productos = productos;
     });
 
     this.obtenerColumnas(this.misProductos);
@@ -58,6 +59,9 @@ export class ProductosComponent implements OnInit {
   }
 
   recibirInformacion(data: ProductoInterface) {
+    console.log(data);
+    console.log(this.productos);
+
     this.informacion = this.productos.find(
       (producto) => producto.SKU === data.SKU
     );

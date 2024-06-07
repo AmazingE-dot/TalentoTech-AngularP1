@@ -3,7 +3,7 @@ export enum PATH {
   CONTACT = 'Contacto',
   CREAR_PRODUCTOS = 'CrearProductos',
   CREAR_USUARIO = 'CrearUsuario',
-  HOME = 'Inicio',
+  HOME = '',
   IMAGE = 'Imagenes',
   LOGIN = 'Login',
   NAME = 'ListaNombres',

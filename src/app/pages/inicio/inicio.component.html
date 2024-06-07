@@ -1,8 +1,40 @@
-<div>
-  <button routerLink="/ListaNombres">Ir a página</button>
-  <button routerLink="/Imagenes">Ir a imágenes</button>
-
-  <button class="btn btn-primary" (click)="abrirModal()">Abrir Modal</button>
-
-  <p>ASDASDASDASDASDASD</p>
+<div class="mx-20 mt-10">
+  <div class="flex justify-between items-center">
+    <div>
+      <p class="font-bold text-2xl">Dashboard</p>
+      <p>Opportunities</p>
+    </div>
+    <div>
+      <button class="bg-sky-600 hover:bg-sky-800 transition-all px-4 py-2 text-white rounded-lg">New Opportunitie</button>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-4">
+    <div class="bg-red-300 rounded-lg">
+      <div class="flex justify-between items-center m-4">
+        <div class="flex-col">
+          <div>In proggress</div>
+          <div>14 Opportunities</div>
+        </div>
+        <div>%</div>
+      </div>
+    </div>
+    <div class="bg-sky-300 rounded-lg">
+      <div class="flex justify-between items-center m-4">
+        <div class="flex-col">
+          <div>In proggress</div>
+          <div>14 Opportunities</div>
+        </div>
+        <div>%</div>
+      </div>
+    </div>
+    <div class="bg-green-300 rounded-lg">
+      <div class="flex justify-between items-center m-4">
+        <div class="flex-col">
+          <div>In proggress</div>
+          <div>14 Opportunities</div>
+        </div>
+        <div>%</div>
+      </div>
+    </div>
+  </div>
 </div>

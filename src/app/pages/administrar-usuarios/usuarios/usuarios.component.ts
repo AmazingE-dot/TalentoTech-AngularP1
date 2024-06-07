@@ -7,13 +7,14 @@ import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 import { PATH } from '../../../core/enum/path.enum';
 import { Router } from '@angular/router';
+import { RolDirective } from '../../../core/directive/rol/rol.directive';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
-  imports: [TableComponent],
+  imports: [TableComponent, RolDirective],
 })
 export class UsuariosComponent implements OnInit, OnDestroy {
   usuarios: UsuarioModel[] = [];
