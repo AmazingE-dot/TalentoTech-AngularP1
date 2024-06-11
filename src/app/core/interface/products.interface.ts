@@ -7,6 +7,7 @@ export interface ProductoInterface {
 }
 
 export interface CrearProductoInterface {
+  image: string,
   nombre: string;
   SKU: string;
   cantidad: number;

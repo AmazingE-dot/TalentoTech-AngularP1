@@ -8,33 +8,35 @@
       <button class="bg-sky-600 hover:bg-sky-800 transition-all px-4 py-2 text-white rounded-lg">New Opportunitie</button>
     </div>
   </div>
+  @for (usuario of usuarios; track $index) {
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-4">
     <div class="bg-red-300 rounded-lg">
       <div class="flex justify-between items-center m-4">
         <div class="flex-col">
-          <div>In proggress</div>
-          <div>14 Opportunities</div>
+          <div>Failed opportunitie</div>
+          <div>{{usuario.opportunities?.loseOpportunitie}}</div>
         </div>
-        <div>%</div>
+        <div>{{ totalLoseOpportunitie | number:'1.2-2' }}%</div>
       </div>
     </div>
     <div class="bg-sky-300 rounded-lg">
       <div class="flex justify-between items-center m-4">
         <div class="flex-col">
           <div>In proggress</div>
-          <div>14 Opportunities</div>
+          <div>{{usuario.opportunities?.inProgress}}</div>
         </div>
-        <div>%</div>
+        <div>{{ totalInProgress | number:'1.2-2' }}%</div>
       </div>
     </div>
     <div class="bg-green-300 rounded-lg">
       <div class="flex justify-between items-center m-4">
         <div class="flex-col">
-          <div>In proggress</div>
-          <div>14 Opportunities</div>
+          <div>Success Opportunitie</div>
+          <div>{{usuario.opportunities?.successOpportunitie}}</div>
         </div>
-        <div>%</div>
+        <div>{{ totalSuccessOpportunitie | number:'1.2-2' }}%</div>
       </div>
     </div>
   </div>
+  }
 </div>

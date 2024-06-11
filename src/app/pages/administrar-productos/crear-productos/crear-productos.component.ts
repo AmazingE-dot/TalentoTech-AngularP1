@@ -29,6 +29,7 @@ export class CrearProductosComponent implements OnInit {
     this.productoForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       SKU: ['', [Validators.required]],
+      image: ['', [Validators.required]],
       cantidad: ['', Validators.required],
       precio: ['', Validators.required],
       nit: ['', []],
@@ -44,6 +45,7 @@ export class CrearProductosComponent implements OnInit {
       nombre: data.nombre,
       SKU: data.SKU,
       cantidad: data.cantidad,
+      image: data.image,
       precio: data.precio,
       distribuidor: {
         nit: data.nit,

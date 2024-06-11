@@ -46,11 +46,10 @@ export class CrearUsuariosComponent implements OnInit, OnDestroy {
     this.usuariosForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
       tipoDocumento: ['', [Validators.required]],
       numeroDocumento: ['', [Validators.required]],
-      rol: ['', [Validators.required]],
       peso: ['', []],
-      fechaNacimiento: ['', [Validators.required]],
     });
   }
 
@@ -105,7 +104,6 @@ export class CrearUsuariosComponent implements OnInit, OnDestroy {
       email: data.email,
       tipoDocumento: data.tipoDocumento,
       numeroDocumento: data.numeroDocumento,
-      rol: data.rol,
       peso: data.peso,
       fechaNacimiento: data.fechaNacimiento,
     };
@@ -122,6 +120,8 @@ export class CrearUsuariosComponent implements OnInit, OnDestroy {
           );
         },
         error: (error) => {
+          console.log("El error es el siguiente", error);
+
           Swal.fire('Error', `${error.error.msg}`, 'error');
         },
       });

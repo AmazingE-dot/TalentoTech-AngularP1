@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
     this.crearFormularioLogin();
   }
 
+  irAcrearUsuarios() {
+    this.router.navigateByUrl(`${PATH.CREAR_USUARIO}/nuevo`);
+  }
+
   crearFormularioLogin() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

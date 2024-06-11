@@ -39,32 +39,40 @@ export class UsuariosService {
       })
       .pipe(
         map((resp: any) => {
-          const {
-            id,
-            nombre,
-            email,
-            tipoDocumento,
-            numeroDocumento,
-            createdAt,
-            rol,
-            peso,
-            password,
-            numeroCelular,
-          } = resp.usuario;
-          this.usuario = new UsuarioModel(
-            id,
-            nombre,
-            email,
-            tipoDocumento,
-            numeroDocumento,
-            createdAt,
-            rol,
-            peso,
-            password,
-            numeroCelular
-          );
-          localStorage.setItem('token', resp.token);
-          return true;
+          if (resp.usuario) {
+            const {
+              _id,
+              nombre,
+              email,
+              tipoDocumento,
+              numeroDocumento,
+              rol,
+              createdAt,
+              numeroCelular,
+              peso,
+              fechaNacimiento,
+              password
+            } = resp.usuario;
+
+            this.usuario = new UsuarioModel(
+              _id,
+              nombre,
+              email,
+              tipoDocumento,
+              numeroDocumento,
+              rol,
+              new Date(createdAt),
+              numeroCelular,
+              peso,
+              new Date(fechaNacimiento),
+              password
+            );
+            localStorage.setItem('token', resp.token);
+            return true;
+          } else {
+            console.error('No se recibió el usuario en la respuesta');
+            return false;
+          }
         }),
         catchError((error) => {
           console.log(error);
@@ -110,3 +118,8 @@ export class UsuariosService {
     return this.httpClient.delete(`${base_url}/usuario/${id}`, this.headers);
   }
 }
+
+
+
+
+

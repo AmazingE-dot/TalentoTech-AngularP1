@@ -1,3 +1,9 @@
+export class Opportunities {
+  inProgress: number;
+  successOpportunitie: number;
+  loseOpportunitie: number;
+}
+
 export class UsuarioModel {
   constructor(
     public readonly _id: string,
@@ -10,6 +16,7 @@ export class UsuarioModel {
     public numeroCelular?: number,
     public peso?: string,
     public fechaNacimiento?: Date,
-    public password?: string
+    public password?: string,
+    public opportunities?: Opportunities
   ) {}
 }

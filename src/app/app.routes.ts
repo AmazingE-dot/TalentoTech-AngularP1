@@ -3,7 +3,6 @@ import { PATH } from './core/enum/path.enum';
 import { AcercaDeComponent } from './pages/acerca-de/acerca-de.component';
 import { ListaNombresComponent } from './pages/lista-nombres/lista-nombres.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
-import { ImagenesComponent } from './pages/imagenes/imagenes.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { UsuariosComponent } from './pages/administrar-usuarios/usuarios/usuarios.component';
 import { ProductosComponent } from './pages/administrar-productos/productos/productos.component';
@@ -22,6 +21,11 @@ export const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: `${PATH.CREAR_USUARIO}/:id`,
+    title: 'Crear usuarios',
+    component: CrearUsuariosComponent,
+  },
+  {
     path: PATH.HOME,
     title: 'Home',
     canActivate: [authGuard],
@@ -30,11 +34,6 @@ export const routes: Routes = [
         path: PATH.INICIO,
         title: 'Inicio',
         component: InicioComponent,
-      },
-      {
-        path: PATH.IMAGE,
-        title: 'Lista de imagenes',
-        component: ImagenesComponent,
       },
       {
         path: PATH.NAME,
@@ -68,11 +67,6 @@ export const routes: Routes = [
         path: PATH.CREAR_PRODUCTOS,
         title: 'Productos',
         component: CrearProductosComponent,
-      },
-      {
-        path: PATH.CREAR_USUARIO,
-        title: 'Crear usuarios',
-        component: CrearUsuariosComponent,
       },
       {
         path: PATH.TASKS,

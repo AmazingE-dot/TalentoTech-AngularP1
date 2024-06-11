@@ -4,6 +4,7 @@ export class ProductosModel {
   constructor(
     public readonly _id: string,
     public nombre: string,
+    public image: string,
     public SKU: string,
     public cantidad: number,
     public precio: number,

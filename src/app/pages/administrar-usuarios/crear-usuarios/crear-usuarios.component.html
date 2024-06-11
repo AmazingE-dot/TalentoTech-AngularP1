@@ -1,49 +1,36 @@
-<h2 class="text-center">Crear Usuario</h2>
+<h2 class="text-center mt-32">Welcome to BeTidy</h2>
 
-<form [formGroup]="usuariosForm" (ngSubmit)="crearUsuario()">
-  <div class="mb-3">
-    <label class="form-label"> Nombre</label>
-    <input type="text" class="form-control" formControlName="nombre" />
+<form class="max-w-md mx-auto" [formGroup]="usuariosForm" (ngSubmit)="crearUsuario()">
+  <div class="relative z-0 w-full mb-5 group">
+      <input formControlName="nombre" type="text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
   </div>
-
-  <div class="mb-3">
-    <label class="form-label"> Correo Electrónico</label>
-    <input type="text" class="form-control" formControlName="email" />
+  <div class="relative z-0 w-full mb-5 group">
+      <input formControlName="email" type="text" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Mail</label>
   </div>
-
-  <div class="mb-3">
-    <label class="form-label"> Tipo de Documento</label>
-    <select class="form-select" formControlName="tipoDocumento">
+  <div class="relative z-0 w-full mb-5 group">
+      <input formControlName="password" type="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
+  </div>
+  <div class="relative z-0 w-full mb-5 group">
+    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " formControlName="tipoDocumento">
       <option value="" disabled>Seleccione un tipo de documento</option>
       <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
       <option value="Cédula de Extranjería">Cédula de Extranjería</option>
       <option value="Pasaporte">Pasaporte</option>
     </select>
   </div>
-
-  <div class="mb-3">
-    <label class="form-label"> Número de Documento</label>
-    <input type="text" class="form-control" formControlName="numeroDocumento" />
+  <div class="grid md:grid-cols-2 md:gap-6">
+    <div class="relative z-0 w-full mb-5 group">
+        <input type="number" formControlName="numeroDocumento" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Document number</label>
+    </div>
+    <div class="relative z-0 w-full mb-5 group">
+        <input formControlName="peso" type="number" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+        <label class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Weight</label>
+    </div>
   </div>
-
-  <div class="mb-3">
-    <label class="form-label"> Rol</label>
-    <select class="form-select" formControlName="rol">
-      <option value="" disabled>Seleccione un rol</option>
-      <option value="USER">Usuario</option>
-      <option value="ADMIN">Administrador</option>
-    </select>
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label"> Peso</label>
-    <input type="number" class="form-control" formControlName="peso" />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label"> Fecha de Nacimiento</label>
-    <input type="date" class="form-control" formControlName="fechaNacimiento" />
-  </div>
-
-  <button type="submit" class="btn btn-primary">Crear Usuario</button>
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">Create</button>
 </form>
+

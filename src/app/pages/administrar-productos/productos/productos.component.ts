@@ -7,13 +7,14 @@ import { Observable, map } from 'rxjs';
 import { TableComponent } from '../../../components/table/table.component';
 import { ProductoInterface } from '../../../core/interface/products.interface';
 import { ProductosModel } from '../../../core/models/producto.models';
+import { RolDirective } from '../../../core/directive/rol/rol.directive';
 
 @Component({
   selector: 'app-productos',
   standalone: true,
   templateUrl: './productos.component.html',
   styleUrl: './productos.component.css',
-  imports: [TableComponent],
+  imports: [TableComponent, RolDirective],
 })
 export class ProductosComponent implements OnInit {
   misProductos: ProductoInterface[] = [];
@@ -38,8 +39,6 @@ export class ProductosComponent implements OnInit {
       this.misProductos = productos;
       this.productos = productos;
     });
-
-    this.obtenerColumnas(this.misProductos);
   }
 
   resumenDeProducto(producto: ProductosModel): ProductoInterface {
@@ -59,8 +58,6 @@ export class ProductosComponent implements OnInit {
   }
 
   recibirInformacion(data: ProductoInterface) {
-    console.log(data);
-    console.log(this.productos);
 
     this.informacion = this.productos.find(
       (producto) => producto.SKU === data.SKU
@@ -92,6 +89,7 @@ export class ProductosComponent implements OnInit {
         icon: 'success',
       });
     }
+
   }
 
   crearProductos() {
