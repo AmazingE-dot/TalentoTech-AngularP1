@@ -102,6 +102,7 @@ export class CrearUsuariosComponent implements OnInit, OnDestroy {
     const usuarioNuevo: crearUsuarioInterface = {
       nombre: data.nombre,
       email: data.email,
+      password: data.password,
       tipoDocumento: data.tipoDocumento,
       numeroDocumento: data.numeroDocumento,
       peso: data.peso,

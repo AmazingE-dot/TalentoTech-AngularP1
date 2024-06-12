@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  base_url: 'https://backendexpress-dfqo.onrender.com/api/v1',
+  base_url: 'https://betidytalentotechback.onrender.com/api/v1',
 };
