@@ -56,4 +56,8 @@ export class ProductosService {
   eliminarProductos(id: string) {
     return this.httpClient.delete(`${base_url}/producto/${id}`, this.headers);
   }
+
+  incrementarOportunidad(productoId: string) {
+    return this.httpClient.put(`${base_url}/usuario/incrementar-oportunidad/${productoId}`, {}, this.headers);
+  }
 }

@@ -96,6 +96,25 @@ export class ProductosComponent implements OnInit {
     this.router.navigateByUrl(`${PATH.CREAR_PRODUCTOS}`);
   }
 
+  comprarProducto(producto: ProductosModel) {
+    this.productosService.incrementarOportunidad(producto._id).subscribe(
+      (resp: any) => {
+        Swal.fire(
+          'Compra realizada',
+          'La oportunidad ha sido incrementada con éxito',
+          'success'
+        );
+      },
+      (err) => {
+        Swal.fire(
+          'Error',
+          'Hubo un problema al incrementar la oportunidad',
+          'error'
+        );
+      }
+    );
+  }
+
   eliminar(data: ProductosModel){
     this.productosService.eliminarProductos(data._id).subscribe(
       (resp: any) => {

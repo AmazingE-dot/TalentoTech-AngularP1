@@ -10,13 +10,6 @@ export const MenuRoutes: MenuInfoInterface[] = [
     subMenu: [],
   },
   {
-    path: PATH.NAME,
-    title: 'Name',
-    icon: '',
-    classCss: '',
-    subMenu: [],
-  },
-  {
     path: PATH.ABOUT,
     title: 'About',
     icon: '',
@@ -40,13 +33,6 @@ export const MenuRoutes: MenuInfoInterface[] = [
   {
     path: PATH.PRODUCTS,
     title: 'Productos',
-    icon: '',
-    classCss: '',
-    subMenu: [],
-  },
-  {
-    path: PATH.TASKS,
-    title: 'Tasks',
     icon: '',
     classCss: '',
     subMenu: [],

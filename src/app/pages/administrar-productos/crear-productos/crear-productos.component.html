@@ -1,41 +1,42 @@
-<p>crear-productos works!</p>
-
-<form class="mx-5" [formGroup]="productoForm" (ngSubmit)="crearProducto()">
-  <div class="mb-3">
-    <label for="nombre" class="form-label">Nombre</label>
-    <input type="text" class="form-control" formControlName="nombre">
+<div class="flex justify-center mt-10">
+ <form class="form-signin" [formGroup]="productoForm" (ngSubmit)="crearProducto()">
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="border p-2 rounded-lg" formControlName="nombre">
   </div>
-  <div class="mb-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     <label for="SKU" class="form-label">SKU</label>
-    <input type="text" class="form-control" formControlName="SKU">
+    <input type="text" class="border p-2 rounded-lg mt-4" formControlName="SKU">
   </div>
-  <div class="mb-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     <label for="image" class="form-label">image</label>
-    <input type="text" class="form-control" formControlName="image">
+    <input type="text" class="border p-2 rounded-lg mt-4" formControlName="image">
   </div>
-  <div class="mb-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     <label class="form-label" for="cantidad">Cantidad</label>
-    <input type="number" class="form-control" formControlName="cantidad">
+    <input type="number" class="border p-2 rounded-lg mt-4" formControlName="cantidad">
   </div>
-  <div class="mb-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     <label class="form-label" for="precio">Precio</label>
-    <input type="number" class="form-control" formControlName="precio">
+    <input type="number" class="border p-2 rounded-lg mt-4" formControlName="precio">
   </div>
-  <div class="mb-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     <label class="form-label" for="nit">NIT</label>
-    <input type="text" class="form-control" formControlName="nit">
+    <input type="text" class="border p-2 rounded-lg mt-4" formControlName="nit">
   </div>
-  <div class="mb-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     <label class="form-label" for="razonSocial">Razón social</label>
-    <input type="text" class="form-control" formControlName="razonSocial">
+    <input type="text" class="border p-2 rounded-lg mt-4" formControlName="razonSocial">
   </div>
-  <div class="mb-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     <label class="form-label" for="telefono">Teléfono</label>
-    <input type="number" class="form-control" formControlName="telefono">
+    <input type="number" class="border p-2 rounded-lg mt-4" formControlName="telefono">
   </div>
-  <div class="mb-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     <label class="form-label" for="direccion">Dirección</label>
-    <input type="text" class="form-control" formControlName="direccion">
+    <input type="text" class="border p-2 rounded-lg mt-4" formControlName="direccion">
   </div>
-  <button type="submit" class="btn btn-primary">Enviar</button>
+  <button type="submit" class="bg-sky-500 hover:bg-sky-700 text-white cursor-pointer p-3 rounded-lg w-full mt-5 transition-all">Enviar</button>
 </form>
+</div>
+
